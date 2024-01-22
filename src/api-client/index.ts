@@ -4,15 +4,19 @@ export default new class ApiClient {
 
   private getHeaders () {
     const { isAuthenticated, token } = useAuth();
-    const headers: HeadersInit = {}
-    if(isAuthenticated.value)  headers["Authorization"] = token.value;
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
+    headers.append("X-PINGOTHER", "pingpong");
+    headers.append("Accept", "/");
+    if(isAuthenticated.value) headers.append("Authorization", token.value);
     return headers;
   }
    
   private async exeFetch(url: string, opts?: RequestInit) {
     try {
       const res = await fetch(url, {
-        mode: "no-cors",
+        mode: "cors", 
         headers: this.getHeaders(),
         ...opts
       });
@@ -28,7 +32,7 @@ export default new class ApiClient {
     }
   }
 
-  postJson (url: string, data?: Record<string, any>) {
+  postJson (url: string, data: Record<string, any>) {
     return this.exeFetch(url, {
       method: "POST",
       body: JSON.stringify(data),
