@@ -1,4 +1,5 @@
 import { RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
+import useAuth from "../composables/useAuth";
 
 const routes: Array<RouteRecordRaw> = [
   { 
@@ -19,6 +20,15 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+})
+
+const { isAuthenticated } = useAuth();
+
+router.beforeEach((to, from, next) => {
+  if(!isAuthenticated.value && !/login/.test(to.path)) {
+    return next("/login");
+  }
+  return next();
 })
 
 export default router;
