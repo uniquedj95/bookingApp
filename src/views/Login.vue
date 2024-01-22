@@ -1,33 +1,31 @@
-
-import { useRouter } from 'vue-router';
-
-import { useRouter } from 'vue-router';
-
-import { radioEmits } from 'element-plus';
 <template>
-  <h2>HOTEL BOOKING APP</h2>
-  <el-form
-    ref="form"
-    :model="formData"
-    :rules="rules"
-    label-width="120px"
-    class="demo-ruleForm"
-    size="default"
-    status-icon
-  >
-    <el-form-item label="Username" prop="username">
-      <el-input v-model="formData.username" />
-    </el-form-item>
-    <el-form-item label="Password" prop="password">
-      <el-input v-model="formData.password" type="password" show-password />
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="submitForm">
-        Login
-      </el-button>
-      <el-button @click="resetForm">Reset</el-button>
-    </el-form-item>
-  </el-form>
+  <div class="login-page">
+    <div style="width: 320px; padding: 2rem; text-align: center;">
+      <h2>HOTEL BOOKING APP</h2>
+      <el-form
+        ref="form"
+        :model="formData"
+        :rules="rules"
+        label-width="120px"
+        class="demo-ruleForm"
+        size="default"
+        status-icon
+      >
+        <el-form-item label="Username" prop="username">
+          <el-input v-model="formData.username" />
+        </el-form-item>
+        <el-form-item label="Password" prop="password">
+          <el-input v-model="formData.password" type="password" show-password />
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="submitForm">
+            Login
+          </el-button>
+          <el-button @click="resetForm">Reset</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -71,3 +69,11 @@ const resetForm = () => {
 }
 
 </script>
+
+<style scoped>
+.login-page {
+  display: "flex";
+  place-items: center;
+  margin: 0 auto; 
+}
+</style>
