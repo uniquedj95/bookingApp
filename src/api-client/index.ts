@@ -36,6 +36,8 @@ export default new class ApiClient {
   }
 
   getJson (url: string) {
-    return this.exeFetch(url);
+    return this.exeFetch(url, {
+      method: "GET"
+    });
   }
 }
